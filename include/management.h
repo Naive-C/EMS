@@ -12,7 +12,9 @@
 
 void view(ems* employee);
 void search_option(ems* employee);
-void search();
+void searchByFirstName(ems* employee);
+void searchByLastName(ems* employee);
+void searchById(ems* employee);
 void add(ems* employee);
 
 #endif

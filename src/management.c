@@ -80,9 +80,9 @@ void search_option(ems* employee)
     print_header(">> Choose Search Option");
 
     printf("             -------------------------------------------------------             \n");
-    printf("                               <1> Search By Firstname	                         \n");
-    printf("                               <2> Search By Lastname                            \n");
-    printf("                               <3> Search By Id                                  \n");
+    printf("                               <1> Search By First Name	                         \n");
+    printf("                               <2> Search By Last Name                           \n");
+    printf("                               <3> Search By ID                                  \n");
     printf("             -------------------------------------------------------             \n");
     printf("                                                             <0> Exit            \n");
     printf("             입력: ");
@@ -91,13 +91,13 @@ void search_option(ems* employee)
 	fflush(stdin);
     switch(getchar()){
         case '1':
-			search(&employee);
+			searchByFirstName(&employee);
 			break;
 		case '2':
-			search(&employee);
+			searchByLastName(&employee);
 			break;
         case '3':
-			search(&employee);
+			searchById(&employee);
 			break;
 		case '0': 
             getchar();
@@ -108,7 +108,87 @@ void search_option(ems* employee)
             goto unknown_char_search_menu_retry;
     } 
 }
-void search()
-{
 
+void searchByFirstName(ems* employee)
+{
+    char input[100];
+    RW_FILE(__func__);
+    printf("             -------------------------------------------------------             \n");
+    printf("                    Write the First Name you want to search                      \n");
+    printf("             -------------------------------------------------------             \n");
+
+    printf("             입력: ");
+    scanf("%s", input); 
+
+    print_header(">> Search By First Name");
+     
+    printf("             |ID        |First Name     |Last Name      |Salary    |\n"); 
+    printf("             -------------------------------------------------------             \n");
+    while((fscanf(employee_fp, "%s %s %s %zu",
+		employee->id, employee->first_name, employee->last_name, &employee->salary)) != EOF) {
+        if(strcmp(employee->first_name, input) == 0) {
+            printf("             |%-10s|%-15s|%-15s|%-10zu|\n", employee->id, employee->first_name, employee->last_name, employee->salary);
+        }
+    }
+    printf("             -------------------------------------------------------             \n");
+    getchar();
+    getchar();
+
+    fclose(employee_fp);
+}
+
+void searchByLastName(ems* employee)
+{
+    char input[100];
+    RW_FILE(__func__);
+    printf("             -------------------------------------------------------             \n");
+    printf("                    Write the Last Name you want to search                       \n");
+    printf("             -------------------------------------------------------             \n");
+
+    printf("             입력: ");
+    scanf("%s", input); 
+
+    print_header(">> Search By Last Name");
+     
+    printf("             |ID        |First Name     |Last Name      |Salary    |\n"); 
+    printf("             -------------------------------------------------------             \n");
+    while((fscanf(employee_fp, "%s %s %s %zu",
+		employee->id, employee->first_name, employee->last_name, &employee->salary)) != EOF) {
+        if(strcmp(employee->last_name, input) == 0) {
+            printf("             |%-10s|%-15s|%-15s|%-10zu|\n", employee->id, employee->first_name, employee->last_name, employee->salary);
+        }
+    }
+    printf("             -------------------------------------------------------             \n");
+    getchar();
+    getchar();
+
+    fclose(employee_fp);
+}
+
+void searchById(ems* employee)
+{
+    char input[100];
+    RW_FILE(__func__);
+    printf("             -------------------------------------------------------             \n");
+    printf("                    Write the ID you want to search                              \n");
+    printf("             -------------------------------------------------------             \n");
+
+    printf("             입력: ");
+    scanf("%s", input); 
+
+    print_header(">> Search By Last Name");
+     
+    printf("             |ID        |First Name     |Last Name      |Salary    |\n"); 
+    printf("             -------------------------------------------------------             \n");
+    while((fscanf(employee_fp, "%s %s %s %zu",
+		employee->id, employee->first_name, employee->last_name, &employee->salary)) != EOF) {
+        if(strcmp(employee->id, input) == 0) {
+            printf("             |%-10s|%-15s|%-15s|%-10zu|\n", employee->id, employee->first_name, employee->last_name, employee->salary);
+        }
+    }
+    printf("             -------------------------------------------------------             \n");
+    getchar();
+    getchar();
+
+    fclose(employee_fp);
 }
