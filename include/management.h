@@ -11,7 +11,7 @@
 #include "console.h"
 
 void view(ems* employee);
-void search_option();
+void search_option(ems* employee);
 void search();
 void add(ems* employee);
 

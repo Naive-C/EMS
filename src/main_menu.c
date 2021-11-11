@@ -27,7 +27,7 @@ unknown_char_main_menu_retry:
 			view(&employee);
 			break;
 		case '2':
-			search_option();
+			search_option(&employee);
 			break;
         case '3':
 			add(&employee);
