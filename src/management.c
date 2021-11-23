@@ -74,44 +74,6 @@ add_employee_retry:
     }
 }
 
-// void search_option(ems* employee)
-// {
-
-//     RW_FILE(__func__);
-//     print_header(">> Choose Search Option");
-
-//     printf("             -------------------------------------------------------             \n");
-//     printf("                               <1> Search By First Name	                         \n");
-//     printf("                               <2> Search By Last Name                           \n");
-//     printf("                               <3> Search By ID                                  \n");
-//     printf("             -------------------------------------------------------             \n");
-//     printf("                                                             <0> Exit            \n");
-//     printf("             입력: ");
-
-//     unknown_char_search_menu_retry:
-// 	fflush(stdin);
-//     switch(getchar()){
-//         case '1':
-// 			searchByFirstName(&employee);
-// 			break;
-// 		case '2':
-// 			searchByLastName(&employee);
-// 			break;
-//         case '3':
-// 			searchById(&employee);
-// 			break;
-//         case '4':
-//             search('4', &employee);
-//             break;
-// 		case '0': 
-//             getchar();
-//             fclose(employee_fp);
-//             break;
-//         default:
-// 			//TODO: 옵션을 제외한 케릭터에 대한 예외처리
-//             goto unknown_char_search_menu_retry;
-//     } 
-// }
 
 void search_option()
 {
