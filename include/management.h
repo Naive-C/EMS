@@ -11,10 +11,8 @@
 #include "console.h"
 
 void view(ems* employee);
-void search_option(ems* employee);
-void searchByFirstName(ems* employee);
-void searchByLastName(ems* employee);
-void searchById(ems* employee);
+void search_option();
+void search(int input, ems* employee);
 void add(ems* employee);
 
 #endif
