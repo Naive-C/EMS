@@ -12,17 +12,27 @@
 
 FILE* employee_fp;
 
+enum{
+	ID = 1,
+    FIRST_NAME,
+    LAST_NAME 
+};
+
+typedef enum{
+	false,
+	true
+}boolean;
+
 typedef struct ems{
-	char         id[10];
-	char first_name[15];
-	char  last_name[15];
-	size_t 		 salary;
+	char         id[11];
+	char first_name[16];
+	char  last_name[16];
+	char     salary[11];
 }ems;
 ems employee;
 
 typedef struct coordinate{
-	int   start_pos;
-	int   end_pos;
-	int	  after_the_end_position;
+	size_t   x_coord;
+	size_t   y_coord;
 }coordinate;
 coordinate coord;
