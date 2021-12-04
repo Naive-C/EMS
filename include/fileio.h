@@ -10,9 +10,9 @@
 #include <sys/stat.h>
 #include "ems.h"
 
-coordinate* find_employee(const char* id, coordinate* coord); 
+coordinate find_employee(const char* id, ems* employee); 
 size_t return_file_length(const int fd);
-void RW_FILE(const char* func_name);
-void APPEND_FILE(const char* func_name);
+void RDWR_FILE();
+void APPEND_FILE();
 
 #endif
