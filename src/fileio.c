@@ -1,35 +1,36 @@
 /*
-	EMS - fileio.c
+	EMS - fileio->c
 	Employee Management System
-	Copyright (C) 2021 Naive-C <naive.c.cell@gmail.com>
+	Copyright (C) 2021 Naive-C <naive->c->cell@gmail->com>
 */
 
 #include "fileio.h"
 
-coordinate* find_employee(const char* id, coordinate* coord) 
+coordinate find_employee(const char* id, ems* employee) 
 {
-	RW_FILE(__func__);
-
 	size_t off_set, file_length;
 	off_set = file_length = 0;
 
+	RDWR_FILE();
 	file_length = return_file_length(fileno(employee_fp));
-
-	char buf[file_length + 1];
+	rewind(employee_fp);
 
 	while(1){	
 		off_set = ftell(employee_fp);
 
-		if(fgets(buf, 1024, employee_fp) == NULL) { break; }
-			
-		if(strstr(buf, id) != NULL){  
-			coord->start_pos = off_set;
-			coord->end_pos  = ftell(employee_fp);
-			coord->after_the_end_position = file_length - ftell(employee_fp);
+		//if(fgets(buf, BUFSIZ, employee_fp) == NULL) { break; }
+		
+		if(fscanf(employee_fp,"%s %s %s %s",
+				  employee->id, 
+				  employee->first_name, 
+				  employee->last_name, 
+				  employee->salary) == EOF) { break; }	
+
+		if(strcmp(employee->id, id) == 0){  
+			coord.x_coord = off_set;
+			coord.y_coord = ftell(employee_fp) + 1;
 		}
 	}
-
-	fclose(employee_fp);	
 	return coord;
 }
 
@@ -45,18 +46,18 @@ size_t return_file_length(const int fd)
 	return size;
 }
 
-void RW_FILE(const char* func_name)
+void RDWR_FILE()
 {
-	if((employee_fp = fopen("Employee.txt", "r+w")) == NULL){
-		fprintf(stderr, "             %s >>> READ_FILE: no such file", func_name);
+	if((employee_fp = fopen("Employee.dat", "r+t")) == NULL){
+		fprintf(stderr, ">>> READ_FILE: no such file");
 		exit(1);
 	}
 }
 
-void APPEND_FILE(const char* func_name)
+void APPEND_FILE()
 {
-	if((employee_fp = fopen("Employee.txt", "a+")) == NULL){
-		fprintf(stderr, "             %s >>> APPEND_FILE: no such file", func_name);
+	if((employee_fp = fopen("Employee.dat", "a+")) == NULL){
+		fprintf(stderr, ">>> APPEND_FILE: no such file");
 		exit(1);
 	}
 }
