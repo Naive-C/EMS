@@ -6,9 +6,10 @@
 
 #include "main_menu.h"
 
-void main_menu()
+void main_menu(const char *msg)
 {
-	print_header("");
+	system("clear");
+	print_header_non_clear("       Developed by 성주용, 원성연");
     printf("                    ▄   ▄  ▄▄   ▄ ▄▄▄   ▄▄▄▄   ▄▄  ▄▄▄  ▄  ▄                     \n");
     printf("                    █▀▄▀█ █  █  ▄ █  █  █ █ █ █▄▄█ █  █ █  █                     \n");
     printf("                    █   █ ▀▄▄▀▄ █ █  █  █ █ █ ▀▄▄  █  █ ▀▄▄▀▄                    \n");
@@ -16,9 +17,11 @@ void main_menu()
     printf("                               <1> View Employees	                             \n");
     printf("                               <2> Search Employee                               \n");
     printf("                               <3> Add Employee                                  \n");
+    printf("                               <4> Modify Employee                               \n");
+    printf("                               <5> Delete Employee                               \n");
     printf("             -------------------------------------------------------             \n");
-    printf("                                                             <0> Exit            \n");
-    printf("             입력: ");
+    printf("                                                             <0> exit            \n");
+    printf("             Choose Option: ");
 
 unknown_char_main_menu_retry:
 	fflush(stdin);
@@ -27,15 +30,21 @@ unknown_char_main_menu_retry:
 			view(&employee);
 			break;
 		case '2':
-			search_option(&employee);
+			search_option();
 			break;
         case '3':
 			add(&employee);
 			break;
+		case '4':
+			modify(0, &employee);
+			break;
+		case '5':
+			delete(0, &employee);
+			break;
 		case '0': 
-            exit(0);
+			exit(0);
         default:
-			//TODO: 옵션을 제외한 케릭터에 대한 예외처리
-            goto unknown_char_main_menu_retry;
+    		printf("             Choose Option: ");
+			goto unknown_char_main_menu_retry;
     }   
 }
